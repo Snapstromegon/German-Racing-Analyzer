@@ -13,9 +13,8 @@ async function loadYear(year) {
   });
   const races = await raceOverview.getRaces();
   console.log(`Found ${races.length} races`);
-  debugger;
   let loading = 0;
-  await async.forEachLimit(races, 10, async (r, ...args) => {
+  await async.forEachLimit(races, 25, async (r, ...args) => {
     console.log(`Loading ${year} - ${++loading} of ${races.length}`);
     await r.load().catch(e => console.error(e, r.url));
   });
